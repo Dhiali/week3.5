@@ -1,6 +1,6 @@
 //creating an array of objects
 
-const plants = [
+const arrPlants = [
 
     {"name": "Fikus Tree",
     "price": 350,
@@ -8,6 +8,8 @@ const plants = [
     "image": "plant1.png",
     "lightAmount" : "low",
     "addedDate":"2023-02-5",
+    "onSale" : "true",
+    
   },
     
   
@@ -18,7 +20,7 @@ const plants = [
     "image": "plant2.png",
     "lightAmount" : "high",
     "addedDate":"2023-04-2",
-
+    "onSale" : "false",
   },
   {
     "name": "Snake Plant",
@@ -26,8 +28,8 @@ const plants = [
     "description": "Boasting tall, sleek, and sword-like leaves, this botanical marvel adds a touch of modern flair to any setting.",
     "image": "plant3.png",
     "lightAmount" : "low",
-    "addedDate":"2023-04-5"
-
+    "addedDate":"2023-04-5",
+    "onSale" : "true",
   },
   {
     "name": "Parlour Palm",
@@ -36,20 +38,30 @@ const plants = [
     "image": "plant4.png",
     "lightAmount" : "low",
     "addedDate":"2023-03-25",
-
+    "onSale" : "false",
   },
   {
     "name": "Japanese Maple",
     "price": 1200,
     "description": "Known for its stunning foliage that transforms with the seasons, this ornamental tree captivates with its delicate, lacy leaves in vibrant shades of red, orange, or gold.",
     "image": "plant5.png",
-    "lightAmount" : "high",
+    "lightAmount" : "bright",
     "addedDate":"2023-09-2",
-
+    "onSale" : "true",
   }
     
 ];
 
+
+const onSale = true;
+
+
+const productsWithOnSale = arrPlants.map(arrPlants => {
+    return { ...arrPlants, onSale: onSale };
+  });
+
+  
+  console.log(productsWithOnSale);
 
 let appliedFilter = "";
 let appliedSort = "date added";
@@ -60,33 +72,89 @@ $(document).ready(function(){
     
 
 //you have to call it only when ready/loaded
-    loadPlants(plants);
+    filterSortPlants();
 });
 
 
+
 function loadPlants (plantsToShow) {
+
+  console.log(plantsToShow);
+$("#plantsContainer").empty();
+
+
+
     for (let i = 0; i < plantsToShow.length; i++) {
-        console.log(plantsToShow[i]);
+        const plant = plantsToShow[i];
+
+
+        console.log(plant.name);
 
         $("#plantsContainer").append($("#plantCardTemplate").html());
 
-        let currentChild = $("#plantsContainer").children().eq(i+1);
+        let currentChild = $("#plantsContainer").children().eq(i);
 
-        $(currentChild).find(".card-img-top").attr('src','assets/' + plants[i].image);
+        $(currentChild).find(".card-img-top").attr('src','assets/' + arrPlants[i].image);
 
-        $(currentChild).find("#nameText").text(plants[i].name);
+        $(currentChild).find("#nameText").text(arrPlants[i].name);
 
-        $(currentChild).find("#priceText").text('R ' + plants[i].price);
+        $(currentChild).find("#priceText").text('R ' + arrPlants[i].price);
 
-        $(currentChild).find("#descriptionText").text(plants[i].description);
+        $(currentChild).find("#descriptionText").text(arrPlants[i].description);
 
         $(currentChild).find("#descriptionText").hide();
         
         
-    }
+    };
 }
 
 
+
+$("input[name='filterRadio']").click(function() {
+
+  appliedFilter = $(this).attr('value');
+
+  console.log(appliedFilter);
+  filterSortPlants();
+});
+
+$("input[name='sortRadio']").click(function() {
+
+  appliedSort = $(this).attr('value');
+
+  console.log(appliedFilter);
+});
+
+function filterSortPlants (){
+
+ let filteredSortedArrPlants = [];
+
+if(appliedFilter){
+  filteredSortedArrPlants = arrPlants.filter(arrPlants => arrPlants.lightAmount == appliedFilter);
+}
+else{
+  filteredSortedArrPlants = arrPlants;
+};
+
+
+ if(appliedSort == "low to high"){
+    filteredSortedArrPlants = filteredSortedArrPlants.sort((a,b) => {
+      return a.price - b.price;
+    });
+ }
+ else if (appliedSort === "data added") {
+  filteredSortedArrPlants = filteredSortedArrPlants.sort((a,b) => {
+        let da = new Date(a.addedDate);
+        let db = new Date(b.addedDate);
+
+        return db-da;
+  });
+ }
+ 
+ loadPlants(filteredSortedArrPlants);
+
+
+}
 
 
 $("#plantsContainer").on('click', '.card', function(){
