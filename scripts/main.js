@@ -64,7 +64,8 @@ const productsWithOnSale = arrPlants.map(arrPlants => {
   console.log(productsWithOnSale);
 
 let appliedFilter = "";
-let appliedSort = "date added";
+let appliedSort = "date added";;
+
 
 
 $(document).ready(function(){
@@ -149,7 +150,20 @@ else{
 
         return db-da;
   });
+
+  if(appliedSort == "ascending letters"){
+    filteredSortedArrPlants = filteredSortedArrPlants.sort((a,b) => {
+      return a.price - b.price;
+    });
  }
+ else{
+  filteredSortedArrPlants = arrPlants;
+};
+
+
+
+ }
+ 
  
  loadPlants(filteredSortedArrPlants);
 
