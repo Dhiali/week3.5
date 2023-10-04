@@ -20,15 +20,18 @@ p {
 
 /* ---------------------------------------- */
 /* Components */
-
+body {
+  background-color: #F0F8FF;
+}
 button {
     border: none;
     padding: 16px 20px;
-    border-radius: 8px;
-    background: #18382B;
+    border-radius: 5px;
+    background: #1f4850;
     font-family: 'Lato', sans-serif;
     font-size: 16px;
     color: white;
+    
 }
 
 /* ---------------------------------------- */
@@ -42,19 +45,26 @@ button {
 }
 
 .nav-link:hover {
-    color: #18382B;
+    color: #076993;
 }
 
 .nav-link.active {
-    border-bottom: 2px solid #18382B;
-    color: #18382B;
+    border-bottom: 2px solid #033c54;
+    color: #077bad;
 }
 
+.navbar-brand {
+  width: 60px;
+
+
+  padding: 10px;
+}
 
 /* Carousel */
 
 .carousel-item {
-    background-color: #E6F2E9;
+    background-color: #F0F8FF;
+    padding-top: 40px,
 }
 
 .carousel-control-next, .carousel-control-prev {
@@ -108,9 +118,12 @@ button {
 /* Home Page */
 
 .hero-image {
-    height: 90vh; 
-    position: relative;
-    bottom: -100px;
+  width: 100%;
+  height: 100%;
+  background-image: url('dog 1.webp');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.9; /* Adjust the opacity value as needed */
 }
 
 .form-control {
@@ -119,7 +132,7 @@ width:520px;
 
 .row2{
     width:420px;
-    border-color: #18382B;
+    border-color: #381828;
    
 }
 
@@ -129,14 +142,15 @@ width:520px;
 
     .accordion{
         width:520px;
-        background-color: rgba(92, 195, 97, 0.6);
+        background-color: rgba(92, 150, 195, 0.6);
         border-radius: 100px 100px 100px 100px;
+        margin-top:30px;
 
     }
 
     .accordion-button{
-        border-color: rgba(92, 195, 97, 0.6);
-        border:  5px solid #18382B;;
+        border-color: rgba(92, 150, 195, 0.6);
+        border:  5px solid #1f4850;
         
     }
 
@@ -144,5 +158,333 @@ width:520px;
     margin-top:50px;
     
 
+}
+
+
+
+
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
+
+
+
+.app-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+
+.app-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  z-index: -1;
+}
+.app-bg .left-side {
+  background-color: rgb(255, 255, 255);
+  width: 75%;
+  height: 100%;
+}
+.app-bg .right-side {
+  background-color: rgb(var(--right-side-bg-color));
+  width: 25%;
+  height: 100%;
+}
+
+
+
+.shopping-bag {
+  padding: 10px 5px;
+  padding-right: 10px;
+}
+.shopping-bag a {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+.shopping-bag a img {
+  width: 32px;
+  height: 32px;
+  padding-right: 10px;
+}
+.shopping-bag .total-ticket-in-cart {
+  margin-left: 10px;
+  padding: 5px;
+  background-color: rgb(242, 255, 58);
+  border-radius: 5px;
+}
+
+
+.trips-container {
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.trip {
+  width: 300px;
+  border: 4px solid rgba(var(--right-side-bg-color), 0.4);
+  border-radius: 10px;
+  padding: 5px;
+}
+.trip img {
+  width: 100%;
+}
+
+
+
+.trips-list {
+  width: 100vw;
+  height: 100vh;
+
+  padding-top: 100px;
+
+  display: flex;
+}
+
+
+.trips {
+  height: 100%;
+  width: 65%;
+
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(3, 3fr);
+}
+.trips img {
+  width: 200px;
+  
+}
+.trips .ticket {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.trips .ticket .ticket-container {
+  width: 250px;
+  height: 90%;
+  background-color: #000;
+
+  border-radius: 25px;
+
+  position: relative;
+}
+.trips .ticket .ticket-container .ticket-img {
+  width: 100%;
+  height: 60%;
+
+  background-color: white;
+
+  border: 3px solid #000;
+  border-radius: 25px 25px 0 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.trips .ticket .ticket-container .desc {
+  width: 100%;
+  color: #fff;
+
+  padding: 10px;
+}
+.trips .ticket .ticket-container .add-to-cart {
+  background-color: rgba(var(--right-side-bg-color), 0.7);
+ 
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  padding: 5px;
+
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+.trips .ticket .ticket-container .add-to-cart img {
+  width: 32px;
+  height: 32px;
+}
+
+
+.cart {
+  height: 100%;
+  width: 25%;
+
+  position: relative;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.cart-tickets {
+  max-height: calc(100vh - 247px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.cart-ticket {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+.cart-ticket div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-ticket .ticket-info {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.6);
+
+  border-radius: 0 10px 10px 0;
+
+  padding: 10px;
+}
+.cart-ticket .ticket-info:hover {
+  background-color: rgba(161, 5, 5, 0.6);
+  cursor: pointer;
+}
+.cart-ticket .ticket-info img {
+  width: 75px;
+}
+
+.cart-ticket .unit-price {
+  flex: 1;
+  font-size: 1.2rem;
+}
+
+.cart-ticket .units {
+  flex: 1;
+}
+.cart-ticket .units .number {
+  margin: 0 10px;
+
+  font-size: 1.2rem;
+}
+.cart-ticket.units .btn {
+  width: 20px;
+  height: 20px;
+
+  background-color: rgb(58, 173, 255);
+
+  border-radius: 50%;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  -webkit-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none; 
+}
+
+
+.cart-footer {
+  width: 100%;
+  background-color: rgb(255, 21, 21);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  border-left: 1px solid rgb(var(--right-side-bg-color));
+}
+.cart-footer div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px 0;
+
+  font-size: 1.3rem;
+}
+.cart-footer .subtotal {
+  background-color: white;
+}
+.cart-footer .checkout {
+  background-color: rgb(134, 209, 244);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+#weather-container {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+#weather-info {
+  display: flex;
+  flex-direction: column;
+}
+
+#weather-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+#weather-description {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#temperature {
+  font-size: 24px;
+}
+
+
+.btn-container {
+  position: relative;
+  
+}
+
+.centered-button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+#success-message {
+  background-color: #4CAF50; 
+  color: white; 
+  padding: 10px; 
+  text-align: center; 
+  font-size: 18px; 
+}
+
+footer {
+  background-color: #6465669e; 
+  color: #fff; 
+  padding: 20px; 
+  text-align: center; 
+  padding-top: 60px;
+}
+
+
+.company-info {
+  font-size: 14px; 
 }
 

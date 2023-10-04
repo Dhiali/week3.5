@@ -3,11 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Plant Shop</title>
+    <title>Cocos cruise- home page </title>
 
     <!-- Style Sheets -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/main.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   </head>
   <body>
 
@@ -19,7 +21,7 @@
         
         <!-- Logo -->
         <a class="navbar-brand" href="#">
-          <img src="assets/Logo.svg" alt="Logo" height="32">
+          <img src="assets/cruise logo.png" alt="Logo" height="45">
         </a>
 
         <!-- Nav Items -->
@@ -28,14 +30,21 @@
             <a class="nav-link active" aria-current="page" href="index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="browse.html">Browse</a>
+            <a class="nav-link" href="trips.html">Browse Trips</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="wishlist.html">Wishlist</a>
-          </li>
+          
         </ul>
 
       </div>
+      <div class="shopping-bag">
+        <a href="./cart.html">
+            <img src="assets/shopping-bag-svgrepo-com (1).svg" alt="cart">
+            0
+            <div class="total-tickets-in-cart">
+               
+            </div>
+        </a>
+    </div>
     </nav>
 
     <!-- ------------------------------------------------------------------------------------------------ -->
@@ -46,66 +55,208 @@
         <!-- Slide 1 -->
         <div class="carousel-item active">
           <div class="container">
-            <div class="row full-height">
+              <div class="row full-height">
               <div class="col align-self-center">
-                <h1>Elevate Your Environment with Everlasting Beauty</h1>
-                <button class="mt-4">Browse Plants</button>
+                <h1 id="welcome-heading" style="text-align: center;">Welcome to Coco's!</h1>
+                
+                <script>
 
-                <div class="accordion mt-4" id="accordionPanelsStayOpenExample">
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                        Plant care 
-                      </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                      <div class="accordion-body">
-                        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                        Lifestyle 
-                      </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-                      <div class="accordion-body">
-                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="accordion-item">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                        Living 
-                      </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
-                      <div class="accordion-body">
-                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  function changeHeadingText() {
+                    const heading = document.getElementById("welcome-heading");
+                    
+                    if (heading) {
+                      heading.textContent = "Welcome to Coco's cruise!";
+                    }
+                  }
+              
+              
+                  document.addEventListener("DOMContentLoaded", function() {
+                    changeHeadingText();
+                  });
+                </script>
 
+
+                <script>
+                  $(document).ready(function () {
+                    
+                    const apiKey = 'e4a0f9bbc1012355d7fa042abb216294';
+                    const cityName = 'Johannesburg'; 
+                    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
+                
+                    
+                    $.ajax({
+                      url: apiUrl,
+                      method: 'GET',
+                      dataType: 'json',
+                      success: function (data) {
+
+                        const temperature = data.main.temp;
+                        const description = data.weather[0].description;
+                        const weatherInfo = `Temperature: ${temperature}°C<br>Description: ${description}`;
+                        $('#weather-info').html(weatherInfo);
+                      },
+                      error: function () {
+                        $('#weather-info').html('Unable to fetch weather data.');
+                      },
+                    });
+                  });
+                </script>
+
+
+                
+               
+                <br>
+              <P style="text-align: center;">Welcome to a tail-wagging adventure like no other!<br>Dive into the 
+                world of canine fellowship and oceanic exploration on our dog cruise website. 
+                Here, we invite you and your furry companions to embark on a unique voyage,<br> where every 
+                paw print leads to new horizons and endless tail-chasing fun.<br>Whether you're a dog owner seeking
+                 a pet-friendly vacation<br> or a dog lover yearning to set sail with adorable four-legged friends,
+                  our website is your port of call for all things dog cruise-related. From dog-friendly itineraries
+                   and facilities aboard to heartwarming stories of canine seafaring, we're here to guide you on a
+                    paws-itively memorable journey at sea. So, leash up your pup, grab your sea legs, and 
+                    get ready for a barking good time. Your dog cruise adventure begins here!</P>
+
+                    
+
+                    <link
+                    rel="stylesheet"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+                  />
+                  
+                  <div id="weather-container">
+                    <div id="weather-icon">
+                      <i class="fas fa-sun"></i>
+                    </div>
+                    <h4 style="text-align: center;">Current Weather</h4>
+                    <div style="text-align: center;"id="weather-info"> Loading weather data...
+                      <div id="weather-icon"></div>
+                      <div id="weather-description"></div>
+                      <div id="temperature"></div>
+                    </div>
+                  </div>
+                  
 
               </div>
-              <div class="col align-self-end">
-                <img src="assets/hero-image.png" class="hero-image" id="hero-image">
+              <div class="col align-self-center">
+                <img src="assets/dog 2.jpg" class="hero-image" id="hero-image">
+              </div>
+            </div>
+          </div>
+    
+        </div>
+
+
+        <div class="carousel-item ">
+          <div class="container">
+            <div class="row full-height">
+              <div class="col align-self-center">
+                <h1 style="text-align: center;">Start your journey...</h1>
+
+
+<p>Welcome to our little info page, where we've fetched answers to all your burning questions about cruising with your canine companion.
+  Dive into our FAQ section, and sail away on our cruise map and find out more about us! We'll do 
+    everything we can, so that you and your furry friend are well-prepared for a fantastic voyage on the high seas.</p>
+
+
+                <div class=" mt-4 btn-container">
+                  <button class=""centered-button"">Browse Trips Now</button>
+                </div>
+               
+
+                
+                  
+                
+
+
+
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Cruise Map
+                      </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15513285.948407289!2d-82.96192496120881!3d18.327961850695285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eb9e309d5a038b7%3A0xc67ecf32cac5dbdc!2sCaribbean!5e0!3m2!1sen!2sza!4v1696412166587!5m2!1sen!2sza" width="480" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                       </div>
+                    </div>
+                  </div>
+                  
+
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Additional info
+                      </button>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">Welcome to our Additional Information section, where you can find all the information you need to organise the ideal canine experience. We recognise that going on a cruise with your dog is a special experience, and we're here to make sure it's a good one.<br>
+
+                        *Pet-friendly accommodations: Discover our cosy and pet-friendly cabin options to make sure you and your four-legged companion have a comfortable space to unwind throughout your travel.
+                        
+                        *Leash Guidelines: To keep your dog secure and at ease while touring the ship, learn more about the rules and regulations regarding leashes. 
+  <br>*Packing Advice: Learn how to pack your dog's necessities, such as food and water bowls, favourite toys, and bedding, to make sure you have everything you need.
+                        
+                        *Pet security: Learn more about our dedication to pet safety, including details on pet life vests and aboard safety precautions.
+                        
+                        *24/7 Support: You may relax knowing that our committed staff is ready at all times to help with any requirements or issues relating to pets.<br>Our goal is to make your dog cruise an unforgettable experience. Please contact our helpful staff if you have any additional inquiries or need help organising your holiday. We can't wait to welcome you and your cherished animal friend on board for your vacation!</div>
+                    </div>
+                  </div>
+
+
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                        FAQs
+                      </button>
+                    </h2>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">1. Are dogs allowed on the cruise?<br>
+
+                        Yes, we warmly welcome dogs on our cruises. We're a pet-friendly cruise company, and we love having your furry friends aboard.<br>
+                        2. What accommodations are available for pets?<br>
+                        
+                        We offer pet-friendly cabin options where you and your dog can stay comfortably. These cabins are equipped with amenities to ensure a pleasant stay for both you and your pet.<br>
+                        3. Are there designated areas for dogs to play on the ship?<br>
+                        
+                        Absolutely! We have designated play areas on the ship where your dog can have fun and socialize with other canine passengers.<br>
+                        4. Can I bring my dog's favorite toys and bedding?<br>
+                        
+                        Yes, you are encouraged to bring your dog's favorite toys, bedding, and other familiar items to help them feel at home during the cruise.<br>
+                        5. What is the leash policy on the ship?<br>
+                        
+                        For the safety and comfort of all passengers, we require dogs to be leashed or in a carrier when they are in public areas on the ship.<br>
+                        
+                        We hope these FAQs provide you with valuable information for your upcoming dog cruise adventure. If you have any more questions or need further assistance, please don't hesitate to reach out to our friendly team.
+                        
+                        
+                        
+                        
+                        
+                        </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="col align-self-center">
+                <img src="assets/dog 1.webp" class="hero-image" id="hero-image">
               </div>
             </div>
           </div>
         </div>
 
+
         <!-- Slide 2 -->
-        <div class="carousel-item">
+         <div class="carousel-item">
           <div class="container">
               <div class="row full-height">
               <div class="col align-self-center">
                 <h1>Sign up for our email service now!</h1>
-              <P>Get the latest info and tips on freshest plants around</P>
+              <P>Get the latest trips and info on the best pet cruise around.</P>
 
               <div class="row2">
                 <div class="col mt-2">
@@ -125,12 +276,15 @@
 
               </div>
               <div class="col align-self-center">
-                <img src="assets/hero-image.png" class="hero-image" id="hero-image">
+                <img src="assets/cruise ship.webp" class="hero-image" id="hero-image">
               </div>
             </div>
           </div>
     
         </div>
+
+
+      
 
       </div>
 
@@ -144,6 +298,17 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
+<br>
+
+<footer>
+  <div class="company-info">
+    <p>© 2023 Coco's Cruise</p>
+    <p>1234 st peters, Pet Haven</p>
+    <p>Email: info@cocospetcruise.com</p>
+    <p>Phone: +27 81 4107 793</p>
+  </div>
+</footer>
+
 
     <!-- Javascript -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
